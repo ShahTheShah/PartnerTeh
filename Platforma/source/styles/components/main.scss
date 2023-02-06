@@ -1,0 +1,131 @@
+#main {
+    padding: 30px;
+    background-color: $GRAY_200;
+    border-radius: 30px;
+    grid-column: 3 / 13;
+
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 20px;
+}
+.menu {
+    grid-column: 10 / 13;
+    border-radius: 30px;
+    background-color: $GRAY_300;
+}
+.stages {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(5, calc(20% - 8px));
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+    width: 100%;
+    overflow: scroll;
+}
+.stage {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+    gap: 20px;
+    background-color: $GRAY_300;
+    border-radius: 30px;
+    &-header {
+        width: 100%;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: start;
+    }
+    &--done {
+        .stage_time,
+        .stage_status {
+            color: white;
+            background-color: $TEAL;
+        }
+    }
+
+    &--active {
+        .stage_status,
+        .stage_time {
+            color: white;
+            background-color: $BLUE;
+        }
+        .stage_status {
+            animation: pulse 1s infinite ease-in-out;
+        }
+    }
+
+    &--deactive {
+        .stage_status {
+            animation: pulse .5s infinite ease-in-out;
+        }
+        .stage_status,
+        .stage_time {
+            color: white;
+            background-color: $RED;
+        }
+    }
+    &_time {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 14px;
+        background-color: $GRAY_400;
+        color: rgba(0, 0, 0, 0);
+    }
+    &_name {
+        font-size: 16px;
+        line-height: 16px;
+        height: 36px;
+    }
+    &_status {
+        aspect-ratio: 1 / 1;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $DARK;
+        border-radius: 50%;
+        background-color: $GRAY_400;
+        font-size: 16px;
+        line-height: 16px;
+        font-weight: 600;
+    }
+    .implementor {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        &_photo {
+            width: 50px;
+            height: 50px;
+            overflow: hidden;
+            border-radius: 50%;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    } 50% {
+        transform: scale(1.1);
+        opacity: .5;
+    } 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+

@@ -1,0 +1,13 @@
+.address {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: center;
+
+    font-weight: 600;
+    text-align: right;
+    &_phone {
+        padding: 5px;
+    }
+}

@@ -1,0 +1,22 @@
+#root {
+    position: absolute;
+    top: 0; left: 0;
+    padding: 20px;
+    width: 100%; height: 100%;
+    background-color: $BG_COLOR;
+    border-radius: 5px;
+    overflow: hidden;
+
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 65px calc(100% - 65px - 20px);
+    gap: 20px 0;
+}
+
+
+@import './header';
+@import './logo';
+@import './user';
+@import './sidebar';
+@import './main';
+@import './project';
