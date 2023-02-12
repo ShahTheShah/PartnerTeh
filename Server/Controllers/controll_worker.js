@@ -33,25 +33,21 @@ class WorkerControll {
         const WorkerToken = GenerateJSONWebToken(worker.id, worker.email, worker.role);
         return res.status(200).json({ WorkerToken });
     };
-    login = async (req, res) => {
+    login = async (req, res, next) => {
         const { email, password } = req.body;
         const worker = await models.Worker.findAll({ where: { email } });
 
         if(!worker) return next(APIError.internal('Такого пользователя не существует!'));
-        console.log(password, worker.password)
-        let comparePassword = bcrypt.compareSync(password, worker.password);
+        let comparePassword = bcrypt.compareSync(password, worker[0].password);
 
         if(!comparePassword) return next(APIError.internal('Неверно указан пароль!'));
 
-        const JSONWebToken = GenerateJSONWebToken(worker.id, worker.email, worker.role);
-        return res.status(200).json({ JSONWebToken });
+        const WorkerToken = GenerateJSONWebToken(worker.id, worker.email, worker.role);
+        return res.status(200).json({ WorkerToken });
     };
     auth = async (req, res, next) => {
-        const { id } = req.query;
-        if (!id) {
-            return next(APIError.badRequest('Неверно указан id работника!'));
-        };
-        res.status(200).json('Hello')
+        const NewWorkerToken = GenerateJSONWebToken(req.user.id, req.user.email, req.user.role);
+        res.status(200).json(NewWorkerToken)
     };
     delete = async (req, res) => {
 
