@@ -33,6 +33,6 @@ const
     mainTask = gulp.parallel(HTML, Styles, Scripts, Images, Sprites),
     FontsTask = gulp.series(Fonts.FontsElements, Fonts.FontsStyle),
     Development = gulp.series(Reset, Favicons, FontsTask, mainTask,  gulp.parallel(Watcher, Server)),
-    Building = gulp.series(Reset, Favicons, FontsTask, mainTask, ZIP);
+    Production = gulp.series(Reset, Favicons, FontsTask, mainTask, ZIP);
 
-export { Development, Building };
+export { Development, Production };
