@@ -1,7 +1,7 @@
 import { makeAutoObservable } from "mobx";
 
-export default class Facilityes {
+export default class Workers {
     constructor() {
-        makeAutoObservable(this);
+        makeAutoObservable();
     };
-}
+};

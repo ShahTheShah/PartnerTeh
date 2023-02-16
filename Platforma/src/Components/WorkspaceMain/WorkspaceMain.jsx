@@ -5,7 +5,7 @@ import WorkspaceMenu from './WorkspaceMenu';
 
 const WorkspaceMain = () => {
     return <section className='workspace-main'>
-        <Project />
+        {/* <Project /> */}
         <WorkspaceMenu />
     </section>;
 };

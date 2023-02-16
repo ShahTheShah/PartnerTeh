@@ -8,10 +8,15 @@ import { LOGIN_ROUTE, WORKSPACE_ROUTE } from '../Utils/Consts';
 import { Context } from '..';
 import { observer } from 'mobx-react-lite';
 
+import Header from '../Components/Header/Header';
+import Sidebar from '../Components/Sidebar/Sidebar'
+
 const AppRouter = observer(() => {
     const { user } = useContext(Context)
     // console.log(user)
     return <>
+        <Header />
+        <Sidebar />
         <Switch>
             {user.isAuth() && authRoutes.map(({path, component}) =>
                 <Route key={path} exact={true} path={path}>
