@@ -1,0 +1,14 @@
+.workspace-main {
+    grid-column: 3 / 13;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    background-color: #E9ECEF;
+    border-radius: 30px;
+    gap: 20px;
+    &-menu {
+        grid-column: 10 / 13;
+        background-color: #dee2e6;
+        border-radius: 30px;
+    }
+}

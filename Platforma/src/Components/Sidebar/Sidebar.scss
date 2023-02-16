@@ -1,0 +1,8 @@
+.sidebar {
+    // background-color: green;
+    grid-column: 1 / 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 30px;
+}
