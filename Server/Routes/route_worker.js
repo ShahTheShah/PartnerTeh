@@ -8,7 +8,7 @@ const workerRouter = new Router();
 
 workerRouter.post(  '/registration', controller.WorkerControll.registration);
 workerRouter.post(  '/login' ,       controller.WorkerControll.login       );
-workerRouter.get(   '/auth'  ,       middleware.AuthMiddleware, controller.WorkerControll.auth);
+workerRouter.get(   '/check'  ,      middleware.AuthMiddleware, controller.WorkerControll.check);
 workerRouter.delete('/:id'   ,       controller.WorkerControll.delete      );
 
 export default workerRouter;
