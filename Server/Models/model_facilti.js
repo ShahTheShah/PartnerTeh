@@ -18,7 +18,7 @@ const Facility = database.define('facility', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    title: {
+    parameters: {
         type: DataTypes.STRING,
         allowNull: false,
     },

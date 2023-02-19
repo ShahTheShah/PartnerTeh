@@ -1,0 +1,21 @@
+@import '../../Assets/Styles/variables';
+
+.header {
+    grid-column: 1 / 13;
+    position: relative;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    background-color: $GRAY_200;
+    border-radius: 30px;
+    &_title {
+        position: absolute;
+        top: calc(50% - 13px);
+        left: calc(50% - 200px);
+        display: block;
+        width: 400px; height: 26px;
+        text-align: center;
+    }
+}

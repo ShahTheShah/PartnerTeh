@@ -1,0 +1,73 @@
+@import '../../Assets/Styles/variables';
+
+.facility {
+    &es {
+        padding: 20px;
+        grid-column: 1 / 11;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        overflow-y: scroll;
+        height: 100%;
+    }
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(4, 1fr) 2fr;
+    gap: 10px;
+    // border: 1px solid black;
+    background-color: $GRAY_300;
+    border-radius: $BORDER_RADIUS;
+    &_number {
+        grid-column: 1 / 4;
+    }
+    &_customer {
+        grid-column: 1 / 4;
+        grid-row: 2;
+    }
+    &_before {
+        grid-column: 1 / 4;
+        grid-row: 3;
+    }
+    &_after {
+        grid-column: 1 / 4;
+        grid-row: 4;
+    }
+    &_name {
+        grid-column: 4 / 12;
+        grid-row: 1 / 4;
+    }
+    &_re {
+        grid-column: 12 / 13;
+        grid-row: 1 / 4;
+        display: flex;
+        justify-content: end;
+        button {
+            padding: 0;
+            background-color: $PRIMARY;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px; height: 50px;
+            border-radius: 50%;
+        }
+    }
+    &_address {
+        grid-column: 4 / 13;
+        grid-row: 4 / 5;
+    }
+    &-workers {
+        grid-column: 1 / 7;
+        &-list {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+    &_contract {
+        grid-column: 7 / 10;
+    }
+    &_date {
+        grid-column: 10 / 13;
+    }
+}

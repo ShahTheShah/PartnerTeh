@@ -28,6 +28,10 @@ const Worker = database.define('worker', {
     password: {
         type: DataTypes.STRING,
     },
+    specializations: {
+        type: DataTypes.JSON,
+        allowNull: false
+    },
     role: {
         type: DataTypes.STRING,
         defaultValue: 'WORKER'

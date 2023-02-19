@@ -1,0 +1,11 @@
+@import '../../Assets/Styles/variables';
+
+.main-sidebar {
+    grid-column: 11 / 13;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    background-color: $GRAY_300;
+    border-radius: $BORDER_RADIUS;
+}

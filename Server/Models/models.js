@@ -8,19 +8,19 @@ import Direction        from './model_direction.js'       ;
 import Stage            from './model_stage.js'           ;
 import stagesStatus    from './model_stage_status.js'  ;
 
-import WorkerFacuility      from './model_workerFacility.js'      ;
-import WorkerDirection      from './model_workerDirection.js'     ;
-import WorkerSpecialization from './model_workerSpecialization.js';
+// import WorkerFacuility      from './model_workerFacility.js'      ;
+// import WorkerDirection      from './model_workerDirection.js'     ;
+// import WorkerSpecialization from './model_workerSpecialization.js';
 
 
-Worker.belongsToMany(Facility, { through:  WorkerFacuility});
-Facility.belongsToMany(Worker, { through: WorkerFacuility });
+// Worker.belongsToMany(Facility, { through:  WorkerFacuility});
+// Facility.belongsToMany(Worker, { through: WorkerFacuility });
 
-Worker.belongsToMany(Direction, { through: WorkerDirection });
-Direction.belongsToMany(Worker, { through: WorkerDirection });
+// Worker.belongsToMany(Direction, { through: WorkerDirection });
+// Direction.belongsToMany(Worker, { through: WorkerDirection });
 
-Worker.belongsToMany(Specialization, { through: WorkerSpecialization });
-Specialization.belongsToMany(Worker, { through: WorkerSpecialization });
+// Worker.belongsToMany(Specialization, { through: WorkerSpecialization });
+// Specialization.belongsToMany(Worker, { through: WorkerSpecialization });
 
 Facility.hasOne(stagesStatus), { as: 'stages' };
 stagesStatus.belongsTo(Facility);

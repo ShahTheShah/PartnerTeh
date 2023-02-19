@@ -1,17 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
+import './index.scss'
+
+import React, { createContext } from 'react'           ;
+import ReactDOM                 from 'react-dom/client';
+
+// Components
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+// Stores
+import CustomersStore  from './Store/CustomersStore' ;
+import FacilityesStore from './Store/FacilityesStore';
+import UserStore       from './Store/UserStore'      ;
+import WorkersStore    from './Store/WorkersStore'   ;
+import DirectionsStore from './Store/Directions';
+import SpecializationsStore from './Store/Specializations';
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+export const
+    Context = createContext(null);
+
+ReactDOM.createRoot(document.getElementById('workspace'))
+    .render(
+        <Context.Provider value={{
+            user           : new UserStore()           ,
+            facilityes     : new FacilityesStore()     ,
+            workers        : new WorkersStore()        ,
+            customers      : new CustomersStore()      ,
+            directions     : new DirectionsStore()     ,
+            specializations: new SpecializationsStore(),
+        }}>
+            <App />
+        </Context.Provider>
+    );
