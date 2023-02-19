@@ -7,15 +7,21 @@ const CreateWorker = () => {
         [lastName, setLastName] = useState(''),
         [firstName, setFirstName] = useState(''),
         [patronymic, setPatronymic] = useState(''),
+        [message, setMessage] = useState(''),
         specializationsInputs = {},
         [email, setEmail] = useState('');
 
     const { specializations, directions } = useContext(Context);
 
     const createWorker = async () => {
-        const response = await create({
-            email, lastName, firstName, patronymic, specializations: specializationsInputs
-        });
+        try {
+            const response = await create({
+                email, lastName, firstName, patronymic, specializations: specializationsInputs
+            });
+            setMessage(`Пароль: ${response.password}`)
+        } catch(error) {
+            setMessage(error.response.data.message)
+        }
     }
     return <form
         className="create-worker"
@@ -52,20 +58,21 @@ const CreateWorker = () => {
         <table className="create-worker-specialization">
             <tr>
                 <td></td>
-                {specializations.specializations.map(({title}) =>
+                {specializations.specializations.map(({ title }) =>
                     <td>{title}</td>
                 )}
             </tr>
-            {directions.directions.map(({id: dirId, title}) =>
+            {directions.directions.map(({ id: dirId, title }) =>
                 <tr>
                     <td>{title}</td>
-                    {specializations.specializations.map(({id: specId}) => {
-                        {specializationsInputs[`${dirId}-${specId}`] = false }
+                    {specializations.specializations.map(({ id: specId }) => {
+                        { specializationsInputs[`${dirId}-${specId}`] = false }
                         return <td><input type="checkbox" name={`${dirId}-${specId}`} onChange={_e => specializationsInputs[`${dirId}-${specId}`] = _e.target.checked} /></td>
                     })}
                 </tr>
             )}
         </table>
+        <p className="create-worker_message">{message}</p>
         <button type="submit" className="button" onClick={createWorker}>Добавить</button>
     </form>;
 };
