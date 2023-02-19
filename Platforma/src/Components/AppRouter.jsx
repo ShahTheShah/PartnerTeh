@@ -12,10 +12,14 @@ import { Context } from '..';
 import Sidebar from './Sidebar/Sidebar';
 import MainSidebar from './MainSidebar/MainSidebar';
 import { observer } from 'mobx-react-lite';
-import { check } from '../HTTP/userAPI';
+import { check, getWorkers } from '../HTTP/userAPI';
+import { checkAll as checkAllSpec } from '../HTTP/specializationsAPI';
+import { checkAll as checkAllCustomer } from '../HTTP/customerAPI';
+import { checkAll as checkAllStage } from '../HTTP/stageAPI';
+import { checkAll as checkAllFac } from '../HTTP/facilityesAPI';
 
 const AppRouter = observer(() => {
-    const { user } = useContext(Context);
+    const { user, specializations, customers, stages, workers, facilityes } = useContext(Context);
     const
         { pathname } = useLocation(),
         history      = useHistory();
@@ -24,7 +28,12 @@ const AppRouter = observer(() => {
             user.setUser(data);
             user.setIsAuth(true);
             history.push('/')
-        })
+        });
+        checkAllSpec().then(data => specializations.setSpecializations(data))
+        checkAllCustomer().then(data => customers.setCustomers(data))
+        checkAllStage().then(data => stages.setStages(data))
+        getWorkers().then(data => workers.setWorkers(data))
+        checkAllFac().then(data => facilityes.setFacilityes(data))
     }, []);
     return <>
         {pathname !== '/auth' && <Sidebar />}

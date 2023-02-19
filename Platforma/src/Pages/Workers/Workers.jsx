@@ -8,12 +8,6 @@ import { getWorkers } from '../../HTTP/userAPI';
 
 const Workers = observer(() => {
     const { workers } = useContext(Context);
-    useEffect(() => {
-        (async () => {
-            const data = await getWorkers();
-            workers.setWorkers(data.data.workers);
-        })();
-    }, []);
     return <ul className="workers">
         {workers.workers.map(({id, firstName}) =>
             <li key={id} className='worker'>

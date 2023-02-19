@@ -16,7 +16,6 @@ const CreateWorker = () => {
         const response = await create({
             email, lastName, firstName, patronymic, specializations: specializationsInputs
         });
-        console.log(response)
     }
     return <form
         className="create-worker"

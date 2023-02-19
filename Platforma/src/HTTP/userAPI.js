@@ -19,9 +19,7 @@ export const
         return jwtDecode(data.WorkerToken);
     },
     getWorkers = async () => {
-        const data = await $authHost.get('worker/getWorkers');
+        const {data} = await $authHost.get('worker/getWorkers');
         // localStorage.setItem('WorkerToken', data.WorkerToken);
-        return data;
-    }
-// DOPZdW2U
-// iwdjbupu
+        return data.workers;
+    };

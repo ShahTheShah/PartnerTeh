@@ -1,14 +1,20 @@
 import './Directions.scss';
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Context } from "../..";
 import { useHistory, useLocation } from 'react-router-dom';
+import { checkAll } from '../../HTTP/directionsAPI';
+import { observer } from 'mobx-react-lite';
 
-const Directions = () => {
+const Directions = observer(() => {
     const { directions } = useContext(Context);
     const
         history = useHistory(),
         { pathname } = useLocation();
+
+    useEffect(() => {
+        checkAll().then(data => directions.setDirections(data));
+    }, []);
 
     const openFacilityesPage = () => {
         history.push('/facilties');
@@ -26,6 +32,6 @@ const Directions = () => {
             >{title}</button>
         )}
     </section>;
-};
+});
 
 export default Directions;

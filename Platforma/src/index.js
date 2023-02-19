@@ -11,8 +11,9 @@ import CustomersStore  from './Store/CustomersStore' ;
 import FacilityesStore from './Store/FacilityesStore';
 import UserStore       from './Store/UserStore'      ;
 import WorkersStore    from './Store/WorkersStore'   ;
-import DirectionsStore from './Store/Directions';
-import SpecializationsStore from './Store/Specializations';
+import DirectionsStore from './Store/DirectionsStore';
+import SpecializationsStore from './Store/SpecializationsStore';
+import StagesStore from './Store/StagesStore';
 
 export const
     Context = createContext(null);
@@ -26,6 +27,7 @@ ReactDOM.createRoot(document.getElementById('workspace'))
             customers      : new CustomersStore()      ,
             directions     : new DirectionsStore()     ,
             specializations: new SpecializationsStore(),
+            stages         : new StagesStore()         ,
         }}>
             <App />
         </Context.Provider>

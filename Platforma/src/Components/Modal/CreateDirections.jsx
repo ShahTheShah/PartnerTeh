@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { create } from "../../HTTP/customerAPI";
+import { create } from "../../HTTP/directionsAPI";
 
-const CreateCustomer = () => {
-    const [customer, setCustomer] = useState('');
+const CreateDirections = () => {
+    const [direction, setDirection] = useState('');
     const createDirection = async () => {
-        const response = await create({name: customer});
+        const response = await create({title: direction});
         console.log(response)
     }
     return <form
@@ -12,18 +12,18 @@ const CreateCustomer = () => {
         onSubmit={_e => _e.preventDefault()}
     >
         <input
-            placeholder="Введите имя клиента..."
+            placeholder="Введите название направления..."
             type="text"
             className="create-direction_input input"
-            value={customer}
-            onChange={_e => setCustomer(_e.target.value)}
+            value={direction}
+            onChange={_e => setDirection(_e.target.value)}
         />
         <button
             type="submit"
             className="create-direction_button button"
             onClick={createDirection}
-        >Добавить клиента</button>
+        >Добавить направление</button>
     </form>;
 };
 
-export default CreateCustomer;
+export default CreateDirections;

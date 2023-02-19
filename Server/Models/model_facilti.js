@@ -28,6 +28,10 @@ const Facility = database.define('facility', {
     completionDate: {
         type: DataTypes.DATE,
     },
+    stages: {
+        type: DataTypes.JSON,
+        allowNull: false
+    },
     price: {
         type: DataTypes.INTEGER,
     },
