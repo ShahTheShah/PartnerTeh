@@ -27,18 +27,18 @@ const
 class WorkerControll {
     create = async (req, res, next) => {
         const {
-            email, firstName,  lastName, patronymic, specializations
+            email, firstName,  lastName, patronymic, specializations, role
         } = req.body;
         if (!email) {
             return next(APIError.badRequest('Не введена почта или пароль!'));
         }
 
         const candidate = await models.Worker.findAll({ where: { email } });
-        if (!candidate) return next(APIError.badRequest('Такой пользователь уже существует!'));
+        if (candidate != 0) return next(APIError.badRequest('Такой пользователь уже существует!'));
         const password = generatePassword();
         const hashPassword = await bcrypt.hash(password, 5);
         const worker = await models.Worker.create({
-            email, password: hashPassword, role: 'WORKER', firstName, lastName, patronymic, specializations
+            email, password: hashPassword, role, firstName, lastName, patronymic, specializations
         });
         // const WorkerToken = GenerateJSONWebToken(worker.id, worker.email, worker.role);
         return res.status(200).json({ password });

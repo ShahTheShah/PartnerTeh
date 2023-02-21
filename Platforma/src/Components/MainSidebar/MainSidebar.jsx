@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { Context } from '../..';
 import CreateCustomers from '../Modal/CreateCustomers';
 import CreateDirections from '../Modal/CreateDirections';
 import CreateFacilityes from '../Modal/CreateFacilityes';
@@ -10,8 +11,9 @@ import Modal from '../Modal/Modal';
 import './MainSidebar.scss';
 
 const MainSidebar = () => {
+    const {user} = useContext(Context);
     const
-        [ modalIsActive, setModalIsActive ] = useState(false),
+        [modalIsActive, setModalIsActive] = useState(false),
         [modalContent, setModalContent] = useState(''),
         { pathname } = useLocation();
 
@@ -44,16 +46,19 @@ const MainSidebar = () => {
         }
         setModalIsActive(true);
     };
-    return <aside className="main-sidebar">
+    const forAdmin = () => <>
         {pathname === '/facilityes' && <button className='button' onClick={() => openModal('facilityes')}>Добавить проект    </button>}
         {pathname === '/facilityes' && <button className='button' onClick={() => openModal('directions')}>Добавить направление    </button>}
         {pathname === '/facilityes' && <button className='button' onClick={() => openModal('specializations')}>Добавить специализацию    </button>}
         {pathname === '/facilityes' && <button className='button' onClick={() => openModal('stages')}>Добавить стадию    </button>}
-        {pathname === '/workers'    && <button className='button' onClick={() => openModal('workers')}>Добавить сотрудника</button>}
-        {pathname === '/customers'  && <button className='button' onClick={() => openModal('customers')}>Добавить клиента   </button>}
+        {pathname === '/workers' && <button className='button' onClick={() => openModal('workers')}>Добавить сотрудника</button>}
+        {pathname === '/customers' && <button className='button' onClick={() => openModal('customers')}>Добавить клиента   </button>}
         <Modal isActive={modalIsActive} setIsActive={setModalIsActive}>
             {modalContent}
         </Modal>
+    </>
+    return <aside className="main-sidebar">
+        {user.user.role == 'ADMIN' && forAdmin()}
     </aside>;
 };
 

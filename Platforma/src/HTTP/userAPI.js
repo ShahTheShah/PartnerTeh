@@ -4,7 +4,6 @@ import jwtDecode from 'jwt-decode';
 export const
     create = async parameters => {
         parameters.specialization = JSON.stringify(parameters.specialization);
-        console.log(parameters)
         const {data} = await $authHost.post('worker/create', parameters);
         return data
     },

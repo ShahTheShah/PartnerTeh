@@ -8,6 +8,7 @@ const CreateWorker = () => {
         [firstName, setFirstName] = useState(''),
         [patronymic, setPatronymic] = useState(''),
         [message, setMessage] = useState(''),
+        [role, setRole] = useState(''),
         specializationsInputs = {},
         [email, setEmail] = useState('');
 
@@ -16,11 +17,11 @@ const CreateWorker = () => {
     const createWorker = async () => {
         try {
             const response = await create({
-                email, lastName, firstName, patronymic, specializations: specializationsInputs
+                email, lastName, firstName, patronymic, specializations: specializationsInputs, role
             });
-            setMessage(`Пароль: ${response.password}`)
+            setMessage({status: '', text: `Пароль: ${response.password}`});
         } catch(error) {
-            setMessage(error.response.data.message)
+            setMessage({status: 'error', text: error.response?.data.message});
         }
     }
     return <form
@@ -55,6 +56,13 @@ const CreateWorker = () => {
             value={email}
             onChange={_e => setEmail(_e.target.value)}
         />
+        <select
+            value={role}
+            onChange={_e => setRole(_e.target.value)}
+        >
+            <option value="WORKER">Сотрудник</option>
+            <option value="ADMIN">Администратор</option>
+        </select>
         <table className="create-worker-specialization">
             <tr>
                 <td></td>
@@ -72,9 +80,12 @@ const CreateWorker = () => {
                 </tr>
             )}
         </table>
-        <p className="create-worker_message">{message}</p>
+        <p className={message.status == 'error' ? "create-worker_message create-worker_message--error" : "create-worker_message"}>{message.text}</p>
         <button type="submit" className="button" onClick={createWorker}>Добавить</button>
     </form>;
 };
 
 export default CreateWorker;
+
+
+//  decus.team@mail.ru MGyyyhtt
