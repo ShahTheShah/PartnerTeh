@@ -34,7 +34,7 @@ class WorkerControll {
         }
 
         const candidate = await models.Worker.findAll({ where: { email } });
-        if (candidate != 0) return next(APIError.badRequest('Такой пользователь уже существует!'));
+        if (candidate.length != 0) return next(APIError.badRequest('Такой пользователь уже существует!'));
         const password = generatePassword();
         const hashPassword = await bcrypt.hash(password, 5);
         const worker = await models.Worker.create({
