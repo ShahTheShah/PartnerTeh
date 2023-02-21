@@ -20,27 +20,27 @@ const MainSidebar = () => {
     const openModal = content => {
         switch (content) {
             case 'workers': {
-                setModalContent(<CreateWorker />);
+                setModalContent(<CreateWorker modalActive={setModalIsActive}/>);
                 break;
             }
             case 'facilityes': {
-                setModalContent(<CreateFacilityes />);
+                setModalContent(<CreateFacilityes modalActive={setModalIsActive} />);
                 break;
             }
             case 'customers': {
-                setModalContent(<CreateCustomers />);
+                setModalContent(<CreateCustomers modalActive={setModalIsActive} />);
                 break;
             }
             case 'directions': {
-                setModalContent(<CreateDirections />);
+                setModalContent(<CreateDirections modalActive={setModalIsActive} />);
                 break;
             }
             case 'specializations': {
-                setModalContent(<CreateSpecialization />);
+                setModalContent(<CreateSpecialization modalActive={setModalIsActive} />);
                 break;
             }
             case 'stages': {
-                setModalContent(<CreateStages />);
+                setModalContent(<CreateStages modalActive={setModalIsActive} />);
                 break;
             }
         }

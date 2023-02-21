@@ -1,8 +1,10 @@
 import { useContext, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { Context } from "../..";
 import { create } from "../../HTTP/userAPI";
 
-const CreateWorker = () => {
+const CreateWorker = ({modalActive}) => {
+    const history = useHistory();
     const
         [lastName, setLastName] = useState(''),
         [firstName, setFirstName] = useState(''),
@@ -20,6 +22,10 @@ const CreateWorker = () => {
                 email, lastName, firstName, patronymic, specializations: specializationsInputs, role
             });
             setMessage({status: '', text: `Пароль: ${response.password}`});
+            // history.push('/workers')
+            setTimeout(() => {
+                modalActive(false)
+            }, 5000);
         } catch(error) {
             setMessage({status: 'error', text: error.response?.data.message});
         }
